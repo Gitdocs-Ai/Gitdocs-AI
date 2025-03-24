@@ -23,7 +23,6 @@ const MarkdownPreview = ({ content }: { content: string }) => {
         const currentPos = containerRef.current.scrollTop;
         if (currentPos > 0) {
           // Ensure we capture the final scroll position
-          console.log("Saving scroll position:", currentPos);
           setMarkdownScrollPosition(currentPos);
         }
       }
@@ -37,7 +36,6 @@ const MarkdownPreview = ({ content }: { content: string }) => {
       // Use a more substantial delay to ensure markdown has fully rendered
       const timer = setTimeout(() => {
         if (containerRef.current) {
-          console.log("Restoring scroll position:", markdownScrollPosition);
           containerRef.current.scrollTop = markdownScrollPosition;
           hasRestoredRef.current = true;
         }
@@ -61,7 +59,6 @@ const MarkdownPreview = ({ content }: { content: string }) => {
     
     // Only update if scrolled more than 20px to reduce unnecessary state updates
     if (difference > 20) {
-      console.log("Updating scroll position:", newPosition);
       setMarkdownScrollPosition(newPosition);
     }
   };

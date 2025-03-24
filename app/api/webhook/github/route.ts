@@ -30,6 +30,7 @@ export async function POST(req: NextRequest) {
     const body = JSON.parse(payload); // Parsed payload
 
 
+    console.log(event);
     // Handle specific GitHub events
     if (event === "push") {
       const fileChanged = body.head_commit.added || body.head_commit.modified || body.head_commit.removed;

@@ -53,7 +53,7 @@ const LoadingScreen = () => {
   const searchParams = useSearchParams();
   const doc_name = searchParams.get("doc_name");
   const { user } = useUser();
-  const { setInitialTree, allFilePaths, setAllFilePaths, setFileTreeError, setSelectedFiles, selectedFiles } = useContext(FileTreeContext) as FileTreeContextType;
+  const { setInitialTree, allFilePaths, setAllFilePaths, setFileTreeError, setSelectedFiles, selectedFiles, setProjectType, setNewReadmePrompt, setEnhancementPrompt, setSpecializedPromptContent } = useContext(FileTreeContext) as FileTreeContextType;
 
   async function fetchOptimizedContent() {
     try {
@@ -62,14 +62,24 @@ const LoadingScreen = () => {
         prompt: allFilePaths,
         doc_name: doc_name
       });
-      if (response.data.file_selection) {
+
+      console.log(response.data, "response");
+      if (response.data.file_selection.length > 0) {
+        setProjectType(response?.data?.readme_type?.primary_type);
+        setNewReadmePrompt(response?.data?.new_readme_prompt);
+        setEnhancementPrompt(response?.data?.enhancement_prompt);
+        setSpecializedPromptContent({
+          prompt_type: response?.data?.specialized_prompt?.prompt_type,
+          prompt_content: response?.data?.specialized_prompt?.prompt_content
+        });
         response.data.file_selection.forEach((file) => {
-          console.log(file, "file");
           setSelectedFiles((prevFiles: string[]) => {
             const newFiles = new Set([...prevFiles, file.file_path]);
             return Array.from(newFiles);
           });
         });
+      } else{
+        toast.error("Our AI is having high CPU usage, please try again later");
       }
       
 
@@ -126,7 +136,7 @@ const LoadingScreen = () => {
         setCurrentMessageIndex((prevIndex) => (prevIndex + 1 ) % messages.length);
         setFadeState("in"); // Fade-in new message
       }, 500);
-    }, 1500); // Change message every 3 seconds
+    }, 1500); // Change message every 1.5 seconds
 
     return () => clearInterval(intervalId);
   }, []);

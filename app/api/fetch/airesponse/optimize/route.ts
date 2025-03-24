@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { optimizeAI } from "@/app/api/lib/ai/optimizeAI";
 import { getRepositoryByNamePopulated } from "@/app/api/auth/repository/clientRepositoryServices";
 import { fetchReadmeDb } from "@/app/api/auth/repository/updateReadmeDb";
-import { parseReadmeAnalysisResponse, printParsedResults } from "@/app/api/lib/optimizeResponseParser";
+import { parseReadmeAnalysisResponse } from "@/app/api/lib/optimizeResponseParser";
 
 const systemPrompt = `
 You are an expert assistant tasked with analyzing repository file structures to prepare for README generation. When presented with a list of files from a repository, you will provide a structured response following these exact formats:
@@ -31,23 +31,63 @@ You are an expert assistant tasked with analyzing repository file structures to 
 
 3. GENERATE SPECIALIZED PROMPTS
    <new_readme_prompt>
-   Complete, ready-to-use prompt for generating a new README from scratch
+   Complete, ready-to-use prompt for generating a new README from scratch (Always give this prompt as user may want to generate a new README from scratch)
    </new_readme_prompt>
 
    <enhancement_prompt>
-   Complete, ready-to-use prompt for enhancing an existing README
+   Complete, ready-to-use prompt for enhancing an existing README (Always give this prompt as user may want to enhance an existing README)
    </enhancement_prompt>
 
    <specialized_prompt>
    {
-     "prompt_type": "Name of specialized prompt type",
-     "prompt_content": "Complete, ready-to-use specialized prompt based on repo type"
+     "prompt_type": "Specialized prompt tailored for primary_type and subtype",
+     "prompt_content": "Highly specific, detailed prompt to generate industry-standard README content tailored for the identified primary_type."
    }
    </specialized_prompt>
 
+  #### Guidance for Specialized Prompts Based on Primary Types
+  For each primary_type, ensure the prompt includes the following:
+
+  - **PROJECT**
+    - Describe the project's purpose, goals, and key features.
+    - Include sections on getting started, usage instructions, and contribution guidelines.
+    - Emphasize project structure, dependencies, and deployment steps.
+    - Provide a professional tone suitable for open-source projects.
+
+  - **API**
+    - Provide comprehensive API documentation, including usage examples, authentication requirements, and request/response examples.
+    - Include endpoints, HTTP methods, query parameters, and sample error responses.
+    - Suggest adding SDK usage examples and versioning information.
+
+  - **PERSONAL**
+    - Highlight the author's goals, achievements, and portfolio links.
+    - Focus on showcasing skills, projects, and future aspirations.
+    - Include a friendly and personal tone while remaining professional.
+
+  - **APPLICATION**
+    - Detail the application's purpose, target audience, and main features.
+    - Include installation instructions, usage examples, screenshots, and troubleshooting steps.
+    - Provide clear steps for contributing to or extending the application.
+
+  - **CONFIGURATION**
+    - Emphasize setup instructions, configuration options, and compatibility.
+    - Include sections on supported platforms, troubleshooting common issues, and recommended configurations.
+    - Provide examples of configuration files and explain key parameters.
+
+  - **OTHER**
+    - Adapt the prompt based on detected patterns or unique requirements.
+    - Focus on flexibility to handle unconventional or hybrid project types.
+    - Ensure completeness by covering purpose, usage, and any essential details.
+
+  #### Examples of Specialized Prompts
+  - For **PROJECT**: "Generate a README for an open-source project that clearly outlines the goals, structure, installation, and usage. Include contribution guidelines and details about supported platforms."
+  - For **API**: "Create API documentation that includes detailed endpoint descriptions, request/response examples, and authentication details. Ensure a professional format suitable for developers."
+  - For **APPLICATION**: "Develop a README for an application targeting end-users, focusing on installation steps, feature highlights, and troubleshooting. Include screenshots and a FAQ section."
+
 Return the response as a properly formatted JSON array without newlines or escape characters within any tags.
 Analyze the file list thoroughly before responding, focusing on understanding the project's purpose, structure, and documentation needs. Always maintain the exact XML tag structure shown above. Never omit any sections or tags. If information is unavailable for a section, include empty brackets [] or {} instead of removing the section.
-`
+`;
+
 
 export async function POST(request: NextRequest) {
     
@@ -73,9 +113,9 @@ export async function POST(request: NextRequest) {
 
     const response = await optimizeAI(userId, prompt, systemPrompt, readme);
 
-    const parsedResponse = parseReadmeAnalysisResponse(response as string);
+    console.log("response");
 
-    console.log(parsedResponse);
+    const parsedResponse = parseReadmeAnalysisResponse(response as string);
 
     return NextResponse.json({
         file_selection: parsedResponse.file_selection,

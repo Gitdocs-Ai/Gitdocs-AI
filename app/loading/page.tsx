@@ -63,16 +63,16 @@ const LoadingScreen = () => {
         doc_name: doc_name
       });
 
-      console.log(response.data, "response");
+      setProjectType(response?.data?.readme_type?.primary_type);
+      setNewReadmePrompt(response?.data?.new_readme_prompt);
+      setEnhancementPrompt(response?.data?.enhancement_prompt);
+      setSpecializedPromptContent({
+        prompt_type: response?.data?.specialized_prompt?.prompt_type,
+        prompt_content: response?.data?.specialized_prompt?.prompt_content
+      });
+      
       if (response.data.file_selection.length > 0) {
-        setProjectType(response?.data?.readme_type?.primary_type);
-        setNewReadmePrompt(response?.data?.new_readme_prompt);
-        setEnhancementPrompt(response?.data?.enhancement_prompt);
-        setSpecializedPromptContent({
-          prompt_type: response?.data?.specialized_prompt?.prompt_type,
-          prompt_content: response?.data?.specialized_prompt?.prompt_content
-        });
-        response.data.file_selection.forEach((file) => {
+      response.data.file_selection.forEach((file) => {
           setSelectedFiles((prevFiles: string[]) => {
             const newFiles = new Set([...prevFiles, file.file_path]);
             return Array.from(newFiles);
@@ -82,8 +82,6 @@ const LoadingScreen = () => {
         toast.error("Our AI is having high CPU usage, please try again later");
       }
       
-
-      console.log(selectedFiles, "selectedFiles");
     } catch (error: any) {
       console.error("Error fetching optimized content:", error);
       toast.error("Our AI is having high CPU usage, please try again later");

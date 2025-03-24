@@ -116,7 +116,7 @@ export async function POST(request: NextRequest) {
 
     const response = await optimizeAI(userId, prompt, systemPrompt, readme);
 
-    console.log("response", response);
+    console.log("response");
 
     const parsedResponse = parseReadmeAnalysisResponse(response as string);
 

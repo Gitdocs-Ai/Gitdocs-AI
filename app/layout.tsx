@@ -10,6 +10,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { Toaster } from "@/components/ui/sonner";
 import { ScrollPositionProvider } from '@/contexts/ScrollContextProvider'; 
+import GoogleTagManager from "@/components/GoogleTagManager";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -17,6 +18,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <ClerkProvider dynamic afterSignOutUrl="/logout">
         <html lang="en" dir="ltr">
           <head>
+            {/* Google Tag Manager */}
+            <GoogleTagManager />
             <meta charSet="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <meta name="description" content="Improve your GitHub repositories with AI-driven insights and code quality analysis." />
@@ -106,6 +109,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Script src="https://checkout.razorpay.com/v1/checkout.js" strategy="lazyOnload" />
           </head>
           <body >
+            {/* Google Tag Manager (noscript) */}
+            <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-57TLBBSQ"
+            height="0" width="0" style={{display: 'none', visibility: 'hidden'}}></iframe></noscript>
+            {/* End Google Tag Manager (noscript) */}
             <GoogleAnalytics />
             <Theme>
               <AppProvider>

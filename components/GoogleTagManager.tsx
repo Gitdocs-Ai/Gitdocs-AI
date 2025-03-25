@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react';
+"use client";
+
+import { useEffect } from 'react';
 
 const GoogleTagManager: React.FC = () => {
   useEffect(() => {

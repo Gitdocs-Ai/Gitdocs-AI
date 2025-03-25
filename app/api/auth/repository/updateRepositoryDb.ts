@@ -48,17 +48,13 @@ export const updateRepositoryDb = async (repositories: Repository[], userId: str
       const totalRepos = repositories.length;
       const fullBatches = Math.floor(totalRepos / BATCH_SIZE);
       const remainder = totalRepos % BATCH_SIZE;
-      
-      console.log(`Processing ${totalRepos} repositories in ${fullBatches} full batches and ${remainder > 0 ? '1 partial batch' : 'no partial batch'}`);
-      
+            
       // Process repositories in batches
       for (let batchIndex = 0; batchIndex < fullBatches + (remainder > 0 ? 1 : 0); batchIndex++) {
           const start = batchIndex * BATCH_SIZE;
           const end = Math.min(start + BATCH_SIZE, totalRepos);
           const currentBatch = repositories.slice(start, end);
-          
-          console.log(`Processing batch ${batchIndex + 1}/${fullBatches + (remainder > 0 ? 1 : 0)}: repositories ${start + 1} to ${end}`);
-          
+                    
           // Process the current batch
           for (const repo of currentBatch) {
               try {

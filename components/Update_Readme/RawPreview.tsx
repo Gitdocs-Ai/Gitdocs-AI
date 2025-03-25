@@ -24,7 +24,6 @@ const RawPreview = ({
       // Use a more substantial delay to ensure the editor is fully ready
       setTimeout(() => {
         if (editorRef.current) {
-          console.log("Restoring raw editor scroll position:", rawScrollPosition);
           editorRef.current.setScrollTop(rawScrollPosition);
           hasRestoredRef.current = true;
         }
@@ -38,7 +37,6 @@ const RawPreview = ({
       const difference = Math.abs(newPosition - rawScrollPosition);
       
       if (difference > 20 || newPosition === 0) {
-        console.log("Updating raw editor scroll position:", newPosition);
         setRawScrollPosition(newPosition);
       }
     });
@@ -50,7 +48,6 @@ const RawPreview = ({
       if (editorRef.current) {
         const currentPos = editorRef.current.getScrollTop();
         if (currentPos > 0) {
-          console.log("Saving raw editor scroll position at unmount:", currentPos);
           setRawScrollPosition(currentPos);
         }
       }

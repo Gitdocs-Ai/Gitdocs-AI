@@ -27,7 +27,6 @@ export const commitChanges = async (owner: string, repo: string, installationId:
             branch,
         });
 
-        console.log("README.md updated successfully!");
     } catch (error: any) {
         if (error.status === 404) {
             await octokit.repos.createOrUpdateFileContents({
@@ -39,7 +38,6 @@ export const commitChanges = async (owner: string, repo: string, installationId:
                 branch,
             });
 
-            console.log("README.md created successfully!");
         } else {
             console.error("Error updating README.md:", error.message);
         }

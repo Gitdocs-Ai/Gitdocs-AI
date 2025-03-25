@@ -1,10 +1,10 @@
 'use client'
 
 import { TfiWrite } from "react-icons/tfi";
-import { useRouter } from "next/navigation";
-import { useState, Dispatch, SetStateAction, useContext } from "react";
+import { useState, useContext } from "react";
 import LoadingAnimation from "./LoadingAnimation";
 import { AppContext, AppContextType } from "@/contexts/AppContext";
+import { MultiStepLoader } from "./MultiStepLoader";
 
 const RepoTools = ({ doc_name, doc_score }: { doc_name: string, doc_score: number }) => {
 
@@ -12,13 +12,10 @@ const RepoTools = ({ doc_name, doc_score }: { doc_name: string, doc_score: numbe
 
     const [loading, setLoading] = useState(false)
 
-    const router = useRouter();
-
     const handleUpdateReadme = () => {
         setStopAllActions(true);
         if (doc_name) {
             setLoading(true)
-            router.push(`/loading?doc_name=${doc_name}`);
         } else {
             console.error("doc_name is undefined or empty");
         }
@@ -40,6 +37,8 @@ const RepoTools = ({ doc_name, doc_score }: { doc_name: string, doc_score: numbe
     }
 
     return (
+        <>
+        {loading && <MultiStepLoader loading={loading} setLoading={setLoading} setStopAllActions={setStopAllActions} doc_name={doc_name} />}
         <div className={`flex ${gridView ? 'mt-3 justify-between items-center' : '-mt-1 mb-1 flex-col-reverse w-full'}`}>
             <div className="flex items-center">
 
@@ -48,16 +47,16 @@ const RepoTools = ({ doc_name, doc_score }: { doc_name: string, doc_score: numbe
             }} disabled={stopAllActions}>
                 
             {loading 
-            ? 
-            <>
-            <LoadingAnimation /> 
-            <span className="text-xs">Updating...</span>
-            </>
-            : 
-            <>
-            <TfiWrite size={16} />
-            <span className="text-xs">Update Readme</span>
-            </>
+                ? 
+                <>
+                    <LoadingAnimation /> 
+                    <span className="text-xs">Updating...</span>
+                </>
+                : 
+                <>
+                    <TfiWrite size={16} />
+                    <span className="text-xs">Update Readme</span>
+                </>
 
             }
 
@@ -70,6 +69,7 @@ const RepoTools = ({ doc_name, doc_score }: { doc_name: string, doc_score: numbe
 
             </p>
         </div>
+    </>
     )
 }
 

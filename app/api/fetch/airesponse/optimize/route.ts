@@ -90,28 +90,29 @@ For each primary_type, ensure the prompt includes the following:
 Analyze the file list thoroughly before responding, focusing on understanding the project's purpose, structure, and documentation needs. Always maintain the exact XML tag structure shown above. Never omit any sections or tags. If information is unavailable for a section, include empty brackets [] or {} instead of removing the section.
 `;
 
-
-
 export async function POST(request: NextRequest) {
-    
     const { userId, prompt, doc_name } = await request.json();
-    
+
     if (!userId) {
-        return NextResponse.json({ error: "Unauthorized"}, { status : 401 })
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
-    
 
     const repository = await getRepositoryByNamePopulated(doc_name);
-    
+
     if (!repository) {
-      return new Response(JSON.stringify({ error: "Repository not found" }), { status: 404 });
+        return new Response(JSON.stringify({ error: "Repository not found" }), {
+            status: 404,
+        });
     }
-    
+
     const repositoryId = repository.repositoryId;
     const readme = await fetchReadmeDb(repositoryId);
 
     if (!userId || !prompt) {
-        return NextResponse.json({ error: "Missing userId or prompt" }, { status: 400 });
+        return NextResponse.json(
+            { error: "Missing userId or prompt" },
+            { status: 400 },
+        );
     }
 
     const response = await optimizeAI(userId, prompt, systemPrompt, readme);
@@ -125,6 +126,6 @@ export async function POST(request: NextRequest) {
         readme_type: parsedResponse.readme_type,
         new_readme_prompt: parsedResponse.new_readme_prompt,
         enhancement_prompt: parsedResponse.enhancement_prompt,
-        specialized_prompt: parsedResponse.specialized_prompt
+        specialized_prompt: parsedResponse.specialized_prompt,
     });
 }

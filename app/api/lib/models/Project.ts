@@ -8,10 +8,9 @@ const projectSchema = new mongoose.Schema({
     projectName: { type: String, required: true, unique: true },
     enabled: { type: Boolean, default: false },
     timestamp: { type: Date, default: Date.now },
-  });
+});
 
-  
-const Project = mongoose.models.Project || mongoose.model('Project', projectSchema);
+const Project =
+    mongoose.models.Project || mongoose.model("Project", projectSchema);
 
 export default Project;
-  

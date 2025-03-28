@@ -5,7 +5,10 @@ import connectMongoWithRetry from "@/app/api/lib/db/connectMongo";
 export const getUsageOverview = async (userId: string) => {
     try {
         await connectMongoWithRetry();
-        const usageOverview = await UsageOverview.findOne({ userId: userId }, { _id: 0, userId: 0, createdAt: 0, updatedAt: 0 });
+        const usageOverview = await UsageOverview.findOne(
+            { userId: userId },
+            { _id: 0, userId: 0, createdAt: 0, updatedAt: 0 },
+        );
         return usageOverview;
     } catch (error) {
         console.error("Error getting usage overview:", error);
@@ -13,10 +16,16 @@ export const getUsageOverview = async (userId: string) => {
     }
 };
 
-export const updateUsageOverview = async (userId: string, tokensUsed: number) => {
+export const updateUsageOverview = async (
+    userId: string,
+    tokensUsed: number,
+) => {
     try {
         await connectMongoWithRetry();
-        const usageOverview = await UsageOverview.findOne({ userId: userId }, { _id: 0, userId: 0, createdAt: 0, updatedAt: 0 });
+        const usageOverview = await UsageOverview.findOne(
+            { userId: userId },
+            { _id: 0, userId: 0, createdAt: 0, updatedAt: 0 },
+        );
         usageOverview.tokensUsed += tokensUsed;
         await usageOverview.save();
     } catch (error) {
@@ -28,7 +37,10 @@ export const updateUsageOverview = async (userId: string, tokensUsed: number) =>
 export const getBillingData = async (userId: string) => {
     try {
         await connectMongoWithRetry();
-        const billingData = await Subscription.findOne({ userId: userId }, { billingAddress: 1, billingHistory: 1 });
+        const billingData = await Subscription.findOne(
+            { userId: userId },
+            { billingAddress: 1, billingHistory: 1 },
+        );
         return billingData;
     } catch (error) {
         console.error("Error getting billing data:", error);
@@ -39,15 +51,21 @@ export const getBillingData = async (userId: string) => {
 export const getBillingAddress = async (userId: string) => {
     try {
         await connectMongoWithRetry();
-        const billingAddress = await Subscription.findOne({ userId: userId }, { billingAddress: 1 });
+        const billingAddress = await Subscription.findOne(
+            { userId: userId },
+            { billingAddress: 1 },
+        );
         return billingAddress;
     } catch (error) {
         console.error("Error getting billing address:", error);
         throw error;
     }
-}
+};
 
-export const updateBillingAddress = async (userId: string, newBillingAddress: any) => {
+export const updateBillingAddress = async (
+    userId: string,
+    newBillingAddress: any,
+) => {
     try {
         await connectMongoWithRetry();
         const subscription = await Subscription.findOne({ userId: userId });
@@ -64,7 +82,8 @@ export const updateBillingAddress = async (userId: string, newBillingAddress: an
         // Find the index of the existing address (if any)
         const existingIndex = subscription.billingAddress.findIndex(
             (addr: any) =>
-                addr.name === newBillingAddress.name && addr.contact === newBillingAddress.contact
+                addr.name === newBillingAddress.name &&
+                addr.contact === newBillingAddress.contact,
         );
 
         if (existingIndex !== -1) {
@@ -86,11 +105,13 @@ export const updateBillingAddress = async (userId: string, newBillingAddress: an
     }
 };
 
-
-export const addBillingAddress = async (userId: string, newBillingAddress: any) => {
+export const addBillingAddress = async (
+    userId: string,
+    newBillingAddress: any,
+) => {
     try {
         await connectMongoWithRetry();
-        const subscription = await Subscription.findOne({ userId: userId });    
+        const subscription = await Subscription.findOne({ userId: userId });
 
         if (!subscription) {
             throw new Error("Subscription not found");
@@ -103,9 +124,12 @@ export const addBillingAddress = async (userId: string, newBillingAddress: any) 
         console.error("Error adding billing address:", error);
         throw error;
     }
-}
+};
 
-export const deleteBillingAddress = async (userId: string, addressData: any) => {
+export const deleteBillingAddress = async (
+    userId: string,
+    addressData: any,
+) => {
     try {
         await connectMongoWithRetry();
         const subscription = await Subscription.findOne({ userId: userId });
@@ -119,12 +143,16 @@ export const deleteBillingAddress = async (userId: string, addressData: any) => 
             (addr: any) =>
                 addr.name === addressData.name &&
                 addr.contact === addressData.contact &&
-                addr.isPrimary === true
+                addr.isPrimary === true,
         );
 
         // Filter the address to exclude the one being deleted
         subscription.billingAddress = subscription.billingAddress.filter(
-            (addr: any) => !(addr.name === addressData.name && addr.contact === addressData.contact)
+            (addr: any) =>
+                !(
+                    addr.name === addressData.name &&
+                    addr.contact === addressData.contact
+                ),
         );
 
         // If the deleted address was primary, set the first remaining address as primary
@@ -140,7 +168,12 @@ export const deleteBillingAddress = async (userId: string, addressData: any) => 
     }
 };
 
-export const createSubscription = async (userId: string, razorpayOrderId: string, subscriptionType: string, price: number) => {
+export const createSubscription = async (
+    userId: string,
+    razorpayOrderId: string,
+    subscriptionType: string,
+    price: number,
+) => {
     try {
         await connectMongoWithRetry();
         const subscription = await Subscription.findOne({ userId: userId });
@@ -149,19 +182,26 @@ export const createSubscription = async (userId: string, razorpayOrderId: string
             throw new Error("User not found");
         }
 
-        const updatedSubscription = await Subscription.findOneAndUpdate(    
+        const updatedSubscription = await Subscription.findOneAndUpdate(
             { userId: userId },
-            { $set: {
-                        billingHistory: [...subscription.billingHistory, {
+            {
+                $set: {
+                    billingHistory: [
+                        ...subscription.billingHistory,
+                        {
                             razorpayOrderId: razorpayOrderId,
                             subscriptionType: subscriptionType,
                             subscriptionPrice: price,
                             status: "pending",
                             subscriptionStartDate: new Date(),
-                            subscriptionEndDate: new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000),
-                        }]
-                     } },
-            { new: true }
+                            subscriptionEndDate: new Date(
+                                new Date().getTime() + 30 * 24 * 60 * 60 * 1000,
+                            ),
+                        },
+                    ],
+                },
+            },
+            { new: true },
         );
 
         if (!updatedSubscription) {
@@ -175,7 +215,14 @@ export const createSubscription = async (userId: string, razorpayOrderId: string
     }
 };
 
-export const updateSubscriptionStatus = async (userId: string, razorpayOrderId: string, razorpayPaymentId: string, subscriptionStatus: string, subscriptionType: string, price: number) => {
+export const updateSubscriptionStatus = async (
+    userId: string,
+    razorpayOrderId: string,
+    razorpayPaymentId: string,
+    subscriptionStatus: string,
+    subscriptionType: string,
+    price: number,
+) => {
     try {
         await connectMongoWithRetry();
         const subscription = await Subscription.findOne({ userId: userId });
@@ -184,22 +231,47 @@ export const updateSubscriptionStatus = async (userId: string, razorpayOrderId: 
             throw new Error("Subscription not found");
         }
 
-        const leftOverTokens = subscription.leftOverTokens + (price === 9 ? 5000000 : 10000000);
-        const bonusTokens = subscription.bonusTokens + (price === 9 ? 10000 : 20000);
+        const leftOverTokens =
+            subscription.leftOverTokens + (price === 9 ? 5000000 : 10000000);
+        const bonusTokens =
+            subscription.bonusTokens + (price === 9 ? 10000 : 20000);
 
         const updatedSubscription = await Subscription.findOneAndUpdate(
-            { userId: userId, "billingHistory.razorpayOrderId": razorpayOrderId },
-            { $set: {   subscriptionType: subscriptionStatus === "Active" ? subscriptionType : subscription.subscriptionType, 
-                        subscriptionPrice: subscriptionStatus === "Active" ? price : subscription.subscriptionPrice,
-                        subscriptionStatus: subscriptionStatus,
-                        subscriptionStartDate: new Date(),
-                        subscriptionEndDate: new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000),
-                        leftOverTokens: subscriptionStatus === "Active" ? leftOverTokens : subscription.leftOverTokens,
-                        bonusTokens: subscriptionStatus === "Active" ? bonusTokens : subscription.bonusTokens,
-                        "billingHistory.$.razorpayPaymentId": razorpayPaymentId,
-                        "billingHistory.$.status": subscriptionStatus === "Active" ? "completed" : "failed"
-                        } },
-                        { new: true }
+            {
+                userId: userId,
+                "billingHistory.razorpayOrderId": razorpayOrderId,
+            },
+            {
+                $set: {
+                    subscriptionType:
+                        subscriptionStatus === "Active"
+                            ? subscriptionType
+                            : subscription.subscriptionType,
+                    subscriptionPrice:
+                        subscriptionStatus === "Active"
+                            ? price
+                            : subscription.subscriptionPrice,
+                    subscriptionStatus: subscriptionStatus,
+                    subscriptionStartDate: new Date(),
+                    subscriptionEndDate: new Date(
+                        new Date().getTime() + 30 * 24 * 60 * 60 * 1000,
+                    ),
+                    leftOverTokens:
+                        subscriptionStatus === "Active"
+                            ? leftOverTokens
+                            : subscription.leftOverTokens,
+                    bonusTokens:
+                        subscriptionStatus === "Active"
+                            ? bonusTokens
+                            : subscription.bonusTokens,
+                    "billingHistory.$.razorpayPaymentId": razorpayPaymentId,
+                    "billingHistory.$.status":
+                        subscriptionStatus === "Active"
+                            ? "completed"
+                            : "failed",
+                },
+            },
+            { new: true },
         );
 
         if (!updatedSubscription) {
@@ -211,5 +283,4 @@ export const updateSubscriptionStatus = async (userId: string, razorpayOrderId: 
         console.error("Error updating subscription status:", error);
         throw error;
     }
-}
-
+};

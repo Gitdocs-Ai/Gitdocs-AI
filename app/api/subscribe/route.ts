@@ -13,12 +13,15 @@ export async function POST(request: NextRequest) {
 
     const { amount, address, phoneNumber } = await request.json();
 
-    if (!amount || amount < 0 || !([9, 19].includes(amount))) {
+    if (!amount || amount < 0 || ![9, 19].includes(amount)) {
         return NextResponse.json({ error: "Invalid amount" }, { status: 400 });
     }
 
     if (!address || !phoneNumber) {
-        return NextResponse.json({ error: "Invalid address or phone number" }, { status: 400 });
+        return NextResponse.json(
+            { error: "Invalid address or phone number" },
+            { status: 400 },
+        );
     }
 
     const razorpay = new Razorpay({
@@ -46,11 +49,18 @@ export async function POST(request: NextRequest) {
     };
     try {
         const order = await razorpay.orders.create(options);
-        await createSubscription(user.userId, order.id, subscriptionType, amount);
+        await createSubscription(
+            user.userId,
+            order.id,
+            subscriptionType,
+            amount,
+        );
         return NextResponse.json({ order });
     } catch (error) {
         console.error("Error creating order:", error);
-        return NextResponse.json({ error: "Failed to create order" }, { status: 500 });
+        return NextResponse.json(
+            { error: "Failed to create order" },
+            { status: 500 },
+        );
     }
 }
-

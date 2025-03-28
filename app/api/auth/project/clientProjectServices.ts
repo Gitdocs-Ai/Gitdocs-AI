@@ -1,9 +1,21 @@
 import connectMongoWithRetry from "../../lib/db/connectMongo";
 import Project from "../../lib/models/Project";
 
-export const createProject = async (clerkId: string, projectName: string, repositoryId: string, messages: string, name: string) => {
+export const createProject = async (
+    clerkId: string,
+    projectName: string,
+    repositoryId: string,
+    messages: string,
+    name: string,
+) => {
     await connectMongoWithRetry();
-    const newProject = await Project.create({ clerkId, projectName, repositoryId, messages, name });
+    const newProject = await Project.create({
+        clerkId,
+        projectName,
+        repositoryId,
+        messages,
+        name,
+    });
     return newProject;
 };
 
@@ -13,9 +25,16 @@ export const getProject = async (projectName: string) => {
     return project;
 };
 
-export const updateProject = async (projectName: string, project: typeof Project) => {
+export const updateProject = async (
+    projectName: string,
+    project: typeof Project,
+) => {
     await connectMongoWithRetry();
-    const updatedProject = await Project.findOneAndUpdate({ projectName }, project, { new: true });
+    const updatedProject = await Project.findOneAndUpdate(
+        { projectName },
+        project,
+        { new: true },
+    );
     return updatedProject;
 };
 

@@ -34,9 +34,9 @@ export async function POST(req: NextRequest) {
 
     try {
         evt = wh.verify(body, {
-            'svix-id': svix_id,
-            'svix-timestamp': svix_timestamp,
-            'svix-signature': svix_signature,
+            "svix-id": svix_id,
+            "svix-timestamp": svix_timestamp,
+            "svix-signature": svix_signature,
         }) as WebhookEvent;
     } catch (err) {
         console.error((err as Error).message);
@@ -53,15 +53,15 @@ export async function POST(req: NextRequest) {
             email: email_addresses[0].email_address,
             firstName: first_name,
             lastName: last_name,
-            subscriptionType: 'Free',
+            subscriptionType: "Free",
             signupDate: new Date(),
             repositories: [],
         });
 
         await Subscription.create({
             userId: id,
-            subscriptionType: 'Free',
-            subscriptionStatus: 'Inactive',
+            subscriptionType: "Free",
+            subscriptionStatus: "Inactive",
             subscriptionStartDate: new Date(),
             subscriptionEndDate: new Date(),
             subscriptionPrice: 0,
@@ -77,7 +77,7 @@ export async function POST(req: NextRequest) {
             createdAt: new Date(),
             updatedAt: new Date(),
         });
-  
+
         return new Response("User created", { status: 200 });
     }
 
@@ -116,8 +116,6 @@ export async function POST(req: NextRequest) {
 
         const { email_addresses, first_name, last_name } = evt.data as UserJSON;
 
-        return new Response("User updated", { status: 200 })
-        
-        
+        return new Response("User updated", { status: 200 });
     }
 }

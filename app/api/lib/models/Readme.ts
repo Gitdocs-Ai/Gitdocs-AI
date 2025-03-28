@@ -7,7 +7,6 @@ const readmeSchema = new mongoose.Schema({
     createdAt: { type: Date, default: Date.now, index: true }, // Indexed for sorting or filtering by creation date
 });
 
-
 const Readme = mongoose.models.Readme || mongoose.model("Readme", readmeSchema);
 
 export default Readme;

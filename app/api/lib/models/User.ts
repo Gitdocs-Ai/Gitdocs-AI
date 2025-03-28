@@ -60,7 +60,7 @@ const UserSchema = new mongoose.Schema(
     },
     {
         timestamps: true, // Adds createdAt and updatedAt fields automatically
-    }
+    },
 );
 
 const User = mongoose.models.User || mongoose.model("User", UserSchema);

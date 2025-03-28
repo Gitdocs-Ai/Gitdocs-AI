@@ -2,7 +2,7 @@ import { Document } from "mongoose";
 
 export interface UserType extends Document {
     subscriptionType: "Free" | "Pro" | "Enterprise"; // Subscription type with enum values
-    stepsCompleted: number;              // Tracks completed steps
+    stepsCompleted: number; // Tracks completed steps
 }
 
 export interface RepositoryUserType extends Document {

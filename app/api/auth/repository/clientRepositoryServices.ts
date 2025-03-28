@@ -1,7 +1,11 @@
 import { isValidObjectId } from "mongoose";
 import Repository from "@/app/api/lib/models/Repository";
 import User from "@/app/api/lib/models/User";
-import { RepositoryType, RepositoryUserType, ProjectMetadataType } from "@/app/api/lib/models/AllModelSchemas";
+import {
+    RepositoryType,
+    RepositoryUserType,
+    ProjectMetadataType,
+} from "@/app/api/lib/models/AllModelSchemas";
 
 // Type guard for RepositoryType
 const isRepositoryType = (obj: any): obj is RepositoryType => {
@@ -16,10 +20,14 @@ const isRepositoryType = (obj: any): obj is RepositoryType => {
 };
 
 // Function to get client repositories
-export const getClientRepositories = async (userId: string): Promise<RepositoryType[]> => {
+export const getClientRepositories = async (
+    userId: string,
+): Promise<RepositoryType[]> => {
     try {
         // Fetch user with a lean query and cast to UserType
-        const user = await User.findOne({ clerkUid: userId }).lean<RepositoryUserType>().exec();
+        const user = await User.findOne({ clerkUid: userId })
+            .lean<RepositoryUserType>()
+            .exec();
 
         // Check if the user exists and has a githubUid
         if (!user || !user.githubUid) {
@@ -27,7 +35,9 @@ export const getClientRepositories = async (userId: string): Promise<RepositoryT
         }
 
         // Fetch repositories owned by the user
-        const repositories = await Repository.find({ owner: user.githubUid }).lean<Partial<RepositoryType>[]>().exec();
+        const repositories = await Repository.find({ owner: user.githubUid })
+            .lean<Partial<RepositoryType>[]>()
+            .exec();
 
         // Filter using the type guard
         return repositories.filter(isRepositoryType);
@@ -38,7 +48,9 @@ export const getClientRepositories = async (userId: string): Promise<RepositoryT
 };
 
 // Function to get repository by ID
-export const getRepositoryById = async (repositoryId: string): Promise<RepositoryType | null> => {
+export const getRepositoryById = async (
+    repositoryId: string,
+): Promise<RepositoryType | null> => {
     try {
         // Validate repositoryId
         if (!isValidObjectId(repositoryId)) {
@@ -46,7 +58,9 @@ export const getRepositoryById = async (repositoryId: string): Promise<Repositor
         }
 
         // Fetch repository by ID
-        const repository = await Repository.findById(repositoryId).lean<Partial<RepositoryType>>().exec();
+        const repository = await Repository.findById(repositoryId)
+            .lean<Partial<RepositoryType>>()
+            .exec();
 
         // Validate the object with the type guard
         return repository && isRepositoryType(repository) ? repository : null;
@@ -57,10 +71,14 @@ export const getRepositoryById = async (repositoryId: string): Promise<Repositor
 };
 
 // Function to get repository by name
-export const getRepositoryByNamePopulated = async (name: string): Promise<RepositoryType | null> => {
+export const getRepositoryByNamePopulated = async (
+    name: string,
+): Promise<RepositoryType | null> => {
     try {
         // Fetch repository by name
-        const repository = await Repository.findOne({ name }).lean<Partial<RepositoryType>>().exec();
+        const repository = await Repository.findOne({ name })
+            .lean<Partial<RepositoryType>>()
+            .exec();
 
         // Validate the object with the type guard
         return repository && isRepositoryType(repository) ? repository : null;
@@ -71,10 +89,14 @@ export const getRepositoryByNamePopulated = async (name: string): Promise<Reposi
 };
 
 // Function to get repositories by owner
-export const getRepositoryByOwner = async (owner: string): Promise<RepositoryType[]> => {
+export const getRepositoryByOwner = async (
+    owner: string,
+): Promise<RepositoryType[]> => {
     try {
         // Fetch repositories by owner
-        const repositories = await Repository.find({ owner }).lean<Partial<RepositoryType>[]>().exec();
+        const repositories = await Repository.find({ owner })
+            .lean<Partial<RepositoryType>[]>()
+            .exec();
 
         // Filter using the type guard
         return repositories.filter(isRepositoryType);
@@ -87,7 +109,7 @@ export const getRepositoryByOwner = async (owner: string): Promise<RepositoryTyp
 // Function to get repository by owner and repositoryId
 export const getRepositoryByOwnerAndRepositoryId = async (
     owner: string,
-    repositoryId: string
+    repositoryId: string,
 ): Promise<RepositoryType | null> => {
     try {
         // Validate repositoryId
@@ -96,21 +118,35 @@ export const getRepositoryByOwnerAndRepositoryId = async (
         }
 
         // Fetch repository by owner and repositoryId
-        const repository = await Repository.findOne({ owner, repositoryId }).lean<Partial<RepositoryType>>().exec();
+        const repository = await Repository.findOne({ owner, repositoryId })
+            .lean<Partial<RepositoryType>>()
+            .exec();
 
         // Validate the object with the type guard
         return repository && isRepositoryType(repository) ? repository : null;
     } catch (error) {
-        console.error("Error fetching repository by owner and repository ID:", error);
-        throw new Error("Failed to fetch repository by owner and repository ID.");
+        console.error(
+            "Error fetching repository by owner and repository ID:",
+            error,
+        );
+        throw new Error(
+            "Failed to fetch repository by owner and repository ID.",
+        );
     }
 };
 
 // Function to fetch repository metadata
-export const fetchRepositoryMetadata = async (repositoryName: string): Promise<ProjectMetadataType | null> => {
+export const fetchRepositoryMetadata = async (
+    repositoryName: string,
+): Promise<ProjectMetadataType | null> => {
     try {
         // Fetch repository by name
-        const repository = await Repository.findOne({ name: repositoryName }, { projectMetadata: 1 }).lean<Partial<RepositoryType>>().exec();
+        const repository = await Repository.findOne(
+            { name: repositoryName },
+            { projectMetadata: 1 },
+        )
+            .lean<Partial<RepositoryType>>()
+            .exec();
 
         // Validate the object with the type guard
         return repository?.projectMetadata || null;
@@ -118,13 +154,18 @@ export const fetchRepositoryMetadata = async (repositoryName: string): Promise<P
         console.error("Error fetching repository metadata:", error);
         throw new Error("Failed to fetch repository metadata.");
     }
-}
+};
 
 // Function to update repository metadata
-export const updateRepositoryMetadata = async (repositoryName: string, metadata: ProjectMetadataType): Promise<void> => {
+export const updateRepositoryMetadata = async (
+    repositoryName: string,
+    metadata: ProjectMetadataType,
+): Promise<void> => {
     try {
         // Fetch repository by name
-        const repository = await Repository.findOne({ name: repositoryName }).exec();
+        const repository = await Repository.findOne({
+            name: repositoryName,
+        }).exec();
 
         if (!repository) {
             throw new Error("Repository not found.");
@@ -137,4 +178,4 @@ export const updateRepositoryMetadata = async (repositoryName: string, metadata:
         console.error("Error updating repository metadata:", error);
         throw new Error("Failed to update repository metadata.");
     }
-}
+};

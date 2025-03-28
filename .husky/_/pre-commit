@@ -1,0 +1,31 @@
+#!/usr/bin/env sh
+
+# Exit immediately if a command fails
+set -e
+
+echo "Running pre-commit hook: Formatting the code..."
+
+# Locate Prettier (use local Prettier if available)
+if [ -f "./node_modules/.bin/prettier" ]; then
+  PRETTIER="./node_modules/.bin/prettier"
+elif command -v prettier >/dev/null 2>&1; then
+  PRETTIER="prettier"
+else
+  echo "Prettier is not installed locally or globally. Please install it with 'npm install prettier'."
+  exit 1
+fi
+
+# Format the staged files
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACMR)
+
+if [ -n "$STAGED_FILES" ]; then
+  echo "$STAGED_FILES" | xargs "$PRETTIER" --write --ignore-unknown
+else
+  echo "No staged files to format."
+fi
+
+# Add the changes back to the index
+echo "Adding the changes to the index..."
+git update-index --again
+
+echo "Pre-commit hook completed successfully."

@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+# Exit immediately if a command fails
+set -e
+
+echo "Running pre-push hook: Testing the build..."
+
+# Step 1: Run the build
+echo "Building the project..."
+if ! npm run build; then
+  echo "Build failed! Push aborted."
+  exit 1
+fi
+
+# If the build succeeds, allow the push to proceed
+echo "Build successful! Proceeding with push..."

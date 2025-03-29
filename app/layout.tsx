@@ -37,6 +37,10 @@ export default function RootLayout({
                             name="keywords"
                             content="GitHub, code analysis, AI, repository analysis, code quality, code review, readme generator, AI tools for developers, Git automation, readme, code documentation, code improvement, code documentation generator, README.md"
                         />
+                        <meta
+                            name="google-adsense-account"
+                            content="ca-pub-2132084475429455"
+                        />
                         <meta name="rating" content="General" />
                         <meta name="revisit-after" content="7 days" />
                         <meta name="distribution" content="Global" />

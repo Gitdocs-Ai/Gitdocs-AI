@@ -91,41 +91,41 @@ Analyze the file list thoroughly before responding, focusing on understanding th
 `;
 
 export async function POST(request: NextRequest) {
-    const { userId, prompt, doc_name } = await request.json();
+  const { userId, prompt, doc_name } = await request.json();
 
-    if (!userId) {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+  if (!userId) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
 
-    const repository = await getRepositoryByNamePopulated(doc_name);
+  const repository = await getRepositoryByNamePopulated(doc_name);
 
-    if (!repository) {
-        return new Response(JSON.stringify({ error: "Repository not found" }), {
-            status: 404,
-        });
-    }
-
-    const repositoryId = repository.repositoryId;
-    const readme = await fetchReadmeDb(repositoryId);
-
-    if (!userId || !prompt) {
-        return NextResponse.json(
-            { error: "Missing userId or prompt" },
-            { status: 400 },
-        );
-    }
-
-    const response = await optimizeAI(userId, prompt, systemPrompt, readme);
-
-    console.log("response");
-
-    const parsedResponse = parseReadmeAnalysisResponse(response as string);
-
-    return NextResponse.json({
-        file_selection: parsedResponse.file_selection,
-        readme_type: parsedResponse.readme_type,
-        new_readme_prompt: parsedResponse.new_readme_prompt,
-        enhancement_prompt: parsedResponse.enhancement_prompt,
-        specialized_prompt: parsedResponse.specialized_prompt,
+  if (!repository) {
+    return new Response(JSON.stringify({ error: "Repository not found" }), {
+      status: 404,
     });
+  }
+
+  const repositoryId = repository.repositoryId;
+  const readme = await fetchReadmeDb(repositoryId);
+
+  if (!userId || !prompt) {
+    return NextResponse.json(
+      { error: "Missing userId or prompt" },
+      { status: 400 },
+    );
+  }
+
+  const response = await optimizeAI(userId, prompt, systemPrompt, readme);
+
+  console.log("response");
+
+  const parsedResponse = parseReadmeAnalysisResponse(response as string);
+
+  return NextResponse.json({
+    file_selection: parsedResponse.file_selection,
+    readme_type: parsedResponse.readme_type,
+    new_readme_prompt: parsedResponse.new_readme_prompt,
+    enhancement_prompt: parsedResponse.enhancement_prompt,
+    specialized_prompt: parsedResponse.specialized_prompt,
+  });
 }

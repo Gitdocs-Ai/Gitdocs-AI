@@ -3,288 +3,284 @@
 @tailwind utilities;
 
 body {
-    font-family: "Roboto", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-    background: #0d0d0d;
-    border-radius: 4px;
+  width: 8px;
+  height: 8px;
+  background: #0d0d0d;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #3a3a3a;
-    border-radius: 4px;
+  background: #3a3a3a;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #4a4a4a;
+  background: #4a4a4a;
 }
 
 ::-webkit-scrollbar-track {
-    background: #0d0d0d;
+  background: #0d0d0d;
 }
 
 .chat-container::-webkit-scrollbar {
-    background: #0d0d0d;
-    width: 0;
+  background: #0d0d0d;
+  width: 0;
 }
 
 .chat-container::-webkit-scrollbar-track {
-    background: #0d0d0d;
-    width: 0;
+  background: #0d0d0d;
+  width: 0;
 }
 
 /* GitHub-inspired Professional Dark Mode Markdown CSS */
 .markdown {
-    color: #c9d1d9;
-    line-height: 1.6;
-    font-family:
-        -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
-        sans-serif;
-    font-size: 16px;
-    background-color: #0d1117;
+  color: #c9d1d9;
+  line-height: 1.6;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  background-color: #0d1117;
 }
 
 .markdown h1 {
-    font-size: 2rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid #21262d;
-    padding-bottom: 0.3rem;
-    color: #c9d1d9;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #21262d;
+  padding-bottom: 0.3rem;
+  color: #c9d1d9;
 }
 
 .markdown h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-top: 1.5rem;
-    margin-bottom: 0.75rem;
-    color: #c9d1d9;
-    border-bottom: 1px solid #21262d;
-    padding-bottom: 0.3rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: #c9d1d9;
+  border-bottom: 1px solid #21262d;
+  padding-bottom: 0.3rem;
 }
 
 .markdown h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-top: 1.25rem;
-    margin-bottom: 0.5rem;
-    color: #c9d1d9;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #c9d1d9;
 }
 
 .markdown p {
-    margin-bottom: 1rem;
-    font-size: 1rem;
-    color: #c9d1d9;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #c9d1d9;
 }
 
 .markdown a {
-    color: #58a6ff;
-    text-decoration: none;
-    transition: color 0.2s;
+  color: #58a6ff;
+  text-decoration: none;
+  transition: color 0.2s;
 }
 
 .markdown a:hover {
-    text-decoration: underline;
-    color: #58a6ff;
+  text-decoration: underline;
+  color: #58a6ff;
 }
 
 .markdown ul,
 .markdown ol {
-    margin-left: 2rem;
-    margin-bottom: 1rem;
+  margin-left: 2rem;
+  margin-bottom: 1rem;
 }
 
 .markdown ul li {
-    list-style-type: disc;
+  list-style-type: disc;
 }
 
 .markdown ol {
-    list-style-type: decimal;
+  list-style-type: decimal;
 }
 
 .markdown code {
-    background-color: #161b22;
-    color: #c9d1d9;
-    font-family:
-        "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-    padding: 0.2rem 0.4rem;
-    border-radius: 3px;
-    font-size: 85%;
+  background-color: #161b22;
+  color: #c9d1d9;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-size: 85%;
 }
 
 .markdown pre {
-    background-color: #161b22;
-    color: #c9d1d9;
-    padding: 1rem;
-    border-radius: 6px;
-    margin-bottom: 1.5rem;
-    overflow-x: auto;
-    font-family:
-        "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-    font-size: 85%;
-    line-height: 1.45;
+  background-color: #161b22;
+  color: #c9d1d9;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 85%;
+  line-height: 1.45;
 }
 
 .markdown blockquote {
-    border-left: 4px solid #30363d;
-    margin-bottom: 1rem;
-    color: #8b949e;
-    padding: 0 1rem;
+  border-left: 4px solid #30363d;
+  margin-bottom: 1rem;
+  color: #8b949e;
+  padding: 0 1rem;
 }
 
 .markdown img {
-    max-width: 100%;
-    border-style: none;
-    margin-bottom: 1rem;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  max-width: 100%;
+  border-style: none;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 .markdown table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 1.5rem;
-    display: block;
-    overflow-x: auto;
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  display: block;
+  overflow-x: auto;
 }
 
 .markdown th,
 .markdown td {
-    padding: 0.5rem 1rem;
-    border: 1px solid #30363d;
+  padding: 0.5rem 1rem;
+  border: 1px solid #30363d;
 }
 
 .markdown th {
-    background-color: #161b22;
-    font-weight: 600;
+  background-color: #161b22;
+  font-weight: 600;
 }
 
 .markdown tr:nth-child(2n) {
-    background-color: #161b22;
+  background-color: #161b22;
 }
 
 .markdown hr {
-    height: 0.25em;
-    padding: 0;
-    margin: 24px 0;
-    background-color: #30363d;
-    border: 0;
+  height: 0.25em;
+  padding: 0;
+  margin: 24px 0;
+  background-color: #30363d;
+  border: 0;
 }
 
 .markdown details {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .markdown summary {
-    font-weight: 600;
-    cursor: pointer;
-    color: #c9d1d9;
+  font-weight: 600;
+  cursor: pointer;
+  color: #c9d1d9;
 }
 
 .markdown kbd {
-    background-color: #161b22;
-    border: 1px solid #30363d;
-    border-bottom-color: #30363d;
-    border-radius: 3px;
-    box-shadow: inset 0 -1px 0 #30363d;
-    color: #c9d1d9;
-    display: inline-block;
-    font-family:
-        "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-    font-size: 11px;
-    line-height: 10px;
-    padding: 3px 5px;
-    vertical-align: middle;
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-bottom-color: #30363d;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #30363d;
+  color: #c9d1d9;
+  display: inline-block;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 11px;
+  line-height: 10px;
+  padding: 3px 5px;
+  vertical-align: middle;
 }
 
 .markdown del {
-    color: #8b949e;
-    text-decoration: line-through;
+  color: #8b949e;
+  text-decoration: line-through;
 }
 
 .markdown ins {
-    color: #c9d1d9;
-    text-decoration: underline;
-    background-color: rgba(46, 160, 67, 0.15);
+  color: #c9d1d9;
+  text-decoration: underline;
+  background-color: rgba(46, 160, 67, 0.15);
 }
 
 .markdown strong {
-    font-weight: 600;
-    color: #c9d1d9;
+  font-weight: 600;
+  color: #c9d1d9;
 }
 
 .markdown em {
-    font-style: italic;
-    color: #c9d1d9;
+  font-style: italic;
+  color: #c9d1d9;
 }
 
 .markdown mark {
-    background-color: rgba(187, 128, 9, 0.15);
-    color: #e3b341;
-    padding: 0.1rem;
+  background-color: rgba(187, 128, 9, 0.15);
+  color: #e3b341;
+  padding: 0.1rem;
 }
 
 .markdown caption {
-    font-size: 0.875rem;
-    color: #8b949e;
-    text-align: center;
-    margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #8b949e;
+  text-align: center;
+  margin-top: 0.5rem;
 }
 
 .markdown small {
-    font-size: 90%;
-    color: #8b949e;
+  font-size: 90%;
+  color: #8b949e;
 }
 
 .markdown abbr {
-    border-bottom: 1px dotted #8b949e;
-    cursor: help;
+  border-bottom: 1px dotted #8b949e;
+  cursor: help;
 }
 
 .markdown figure {
-    margin: 1.5rem 0;
+  margin: 1.5rem 0;
 }
 
 .markdown figcaption {
-    font-size: 0.85rem;
-    color: #8b949e;
-    margin-top: 0.5rem;
-    text-align: center;
+  font-size: 0.85rem;
+  color: #8b949e;
+  margin-top: 0.5rem;
+  text-align: center;
 }
 
 .markdown iframe,
 .markdown video {
-    max-width: 100%;
-    border: 1px solid #30363d;
-    border-radius: 6px;
-    margin-bottom: 1rem;
+  max-width: 100%;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  margin-bottom: 1rem;
 }
 
 .markdown audio {
-    width: 100%;
-    margin-bottom: 1rem;
+  width: 100%;
+  margin-bottom: 1rem;
 }
 
 .markdown progress {
-    height: 8px;
-    border-radius: 3px;
-    background-color: #0d1117;
+  height: 8px;
+  border-radius: 3px;
+  background-color: #0d1117;
 }
 
 .markdown progress[value]::-webkit-progress-value {
-    background-color: #58a6ff;
+  background-color: #58a6ff;
 }
 
 .markdown progress[value]::-webkit-progress-bar {
-    background-color: #21262d;
+  background-color: #21262d;
 }
 
 /* Light mode support - can be toggled with a class */
 .markdown-light-mode {
-    color: #24292e;
-    background-color: #ffffff;
+  color: #24292e;
+  background-color: #ffffff;
 }
 
 .markdown-light-mode h1,
@@ -292,270 +288,270 @@ body {
 .markdown-light-mode h3,
 .markdown-light-mode p,
 .markdown-light-mode strong {
-    color: #24292e;
+  color: #24292e;
 }
 
 .markdown-light-mode h1,
 .markdown-light-mode h2 {
-    border-bottom-color: #eaecef;
+  border-bottom-color: #eaecef;
 }
 
 .markdown-light-mode a {
-    color: #0366d6;
+  color: #0366d6;
 }
 
 .markdown-light-mode a:hover {
-    color: #0366d6;
+  color: #0366d6;
 }
 
 .markdown-light-mode code,
 .markdown-light-mode pre {
-    background-color: #f6f8fa;
-    color: #24292e;
+  background-color: #f6f8fa;
+  color: #24292e;
 }
 
 .markdown-light-mode blockquote {
-    border-left-color: #dfe2e5;
-    color: #6a737d;
+  border-left-color: #dfe2e5;
+  color: #6a737d;
 }
 
 .markdown-light-mode table th,
 .markdown-light-mode table td {
-    border-color: #dfe2e5;
+  border-color: #dfe2e5;
 }
 
 .markdown-light-mode th,
 .markdown-light-mode tr:nth-child(2n) {
-    background-color: #f6f8fa;
+  background-color: #f6f8fa;
 }
 
 .markdown-light-mode hr {
-    background-color: #e1e4e8;
+  background-color: #e1e4e8;
 }
 
 /* Base container for the preview with dark background */
 .raw-preview {
-    background-color: #0d0d0d;
-    color: #d1d1d1; /* Default text color */
-    padding: 1rem;
+  background-color: #0d0d0d;
+  color: #d1d1d1; /* Default text color */
+  padding: 1rem;
 }
 
 /* Styling for headings */
 .raw-preview h1,
 .raw-preview h2,
 .raw-preview h3 {
-    color: #e0e0e0; /* Light gray for headings */
-    margin-bottom: 1rem;
-    font-weight: bold;
+  color: #e0e0e0; /* Light gray for headings */
+  margin-bottom: 1rem;
+  font-weight: bold;
 }
 
 .raw-preview h1 {
-    font-size: 1.75rem;
+  font-size: 1.75rem;
 }
 
 .raw-preview h2 {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .raw-preview h3 {
-    font-size: 1.25rem;
+  font-size: 1.25rem;
 }
 
 /* Lists */
 .raw-preview ul {
-    list-style-type: disc;
-    padding-left: 2rem;
-    margin-bottom: 1.5rem;
+  list-style-type: disc;
+  padding-left: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .raw-preview ol {
-    list-style-type: decimal;
-    padding-left: 2rem;
-    margin-bottom: 1.5rem;
+  list-style-type: decimal;
+  padding-left: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .raw-preview li {
-    margin-bottom: 0.8rem;
+  margin-bottom: 0.8rem;
 }
 
 /* Bold and italic text */
 .raw-preview strong {
-    font-weight: bold;
-    color: #f0c674; /* Subtle gold for emphasis */
+  font-weight: bold;
+  color: #f0c674; /* Subtle gold for emphasis */
 }
 
 .raw-preview em {
-    font-style: italic;
-    color: #a0a0a0; /* Muted light gray */
+  font-style: italic;
+  color: #a0a0a0; /* Muted light gray */
 }
 
 /* Blockquote */
 .raw-preview blockquote {
-    border-left: 4px solid #2980b9; /* Refined blue border */
-    padding: 1rem;
-    margin: 1.5rem 0;
-    font-style: italic;
-    color: #b0b0b0; /* Softer gray for quotes */
-    background-color: #1a1a1a; /* Darker contrast background */
-    border-radius: 6px;
+  border-left: 4px solid #2980b9; /* Refined blue border */
+  padding: 1rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: #b0b0b0; /* Softer gray for quotes */
+  background-color: #1a1a1a; /* Darker contrast background */
+  border-radius: 6px;
 }
 
 /* Inline code */
 .raw-preview code {
-    background-color: #2d2d2d; /* Dark background for inline code */
-    padding: 0.2rem 0.4rem;
-    border-radius: 4px;
-    font-family: "Courier New", monospace;
-    color: #f0f0f0; /* Light text for clarity */
-    margin-top: 1.5rem;
+  background-color: #2d2d2d; /* Dark background for inline code */
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: "Courier New", monospace;
+  color: #f0f0f0; /* Light text for clarity */
+  margin-top: 1.5rem;
 }
 
 /* Code blocks */
 .raw-preview pre {
-    background-color: #2d2d2d; /* Dark gray for code block */
-    color: #dcdcdc; /* Soft light text for readability */
-    padding: 1rem;
-    border-radius: 8px;
-    overflow-x: auto;
-    margin-bottom: 1.5rem;
-    margin-top: 1rem;
-    font-family: "Courier New", monospace;
-    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.6); /* Subtle inner shadow */
+  background-color: #2d2d2d; /* Dark gray for code block */
+  color: #dcdcdc; /* Soft light text for readability */
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+  font-family: "Courier New", monospace;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.6); /* Subtle inner shadow */
 }
 
 /* Links */
 .raw-preview a {
-    color: #2980b9; /* Professional blue for links */
-    text-decoration: underline;
-    transition: color 0.3s ease;
+  color: #2980b9; /* Professional blue for links */
+  text-decoration: underline;
+  transition: color 0.3s ease;
 }
 
 .raw-preview a:hover {
-    color: #3498db; /* Slightly lighter blue on hover */
+  color: #3498db; /* Slightly lighter blue on hover */
 }
 
 /* Horizontal Rule */
 .raw-preview hr {
-    border: none;
-    border-top: 1px solid #333333;
-    margin: 2rem 0;
+  border: none;
+  border-top: 1px solid #333333;
+  margin: 2rem 0;
 }
 
 /* Tables */
 .raw-preview table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1.5rem 0;
-    color: #d1d1d1;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  color: #d1d1d1;
 }
 
 .raw-preview th,
 .raw-preview td {
-    border: 1px solid #333333;
-    padding: 0.75rem;
-    text-align: left;
+  border: 1px solid #333333;
+  padding: 0.75rem;
+  text-align: left;
 }
 
 .raw-preview th {
-    background-color: #1a1a1a;
-    color: #e0e0e0;
-    font-weight: bold;
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+  font-weight: bold;
 }
 
 .raw-preview tr:nth-child(even) {
-    background-color: #151515;
+  background-color: #151515;
 }
 
 @layer base {
-    :root {
-        --background: 0 0% 100%;
-        --foreground: 240 10% 3.9%;
-        --card: 0 0% 100%;
-        --card-foreground: 240 10% 3.9%;
-        --popover: 0 0% 100%;
-        --popover-foreground: 240 10% 3.9%;
-        --primary: 240 5.9% 10%;
-        --primary-foreground: 0 0% 98%;
-        --secondary: 240 4.8% 95.9%;
-        --secondary-foreground: 240 5.9% 10%;
-        --muted: 240 4.8% 95.9%;
-        --muted-foreground: 240 3.8% 46.1%;
-        --accent: 240 4.8% 95.9%;
-        --accent-foreground: 240 5.9% 10%;
-        --destructive: 0 84.2% 60.2%;
-        --destructive-foreground: 0 0% 98%;
-        --border: 240 5.9% 90%;
-        --input: 240 5.9% 90%;
-        --ring: 240 10% 3.9%;
-        --chart-1: 12 76% 61%;
-        --chart-2: 173 58% 39%;
-        --chart-3: 197 37% 24%;
-        --chart-4: 43 74% 66%;
-        --chart-5: 27 87% 67%;
-        --radius: 0.5rem;
-    }
-    .dark {
-        --background: 240 10% 3.9%;
-        --foreground: 0 0% 98%;
-        --card: 240 10% 3.9%;
-        --card-foreground: 0 0% 98%;
-        --popover: 240 10% 3.9%;
-        --popover-foreground: 0 0% 98%;
-        --primary: 0 0% 98%;
-        --primary-foreground: 240 5.9% 10%;
-        --secondary: 240 3.7% 15.9%;
-        --secondary-foreground: 0 0% 98%;
-        --muted: 240 3.7% 15.9%;
-        --muted-foreground: 240 5% 64.9%;
-        --accent: 240 3.7% 15.9%;
-        --accent-foreground: 0 0% 98%;
-        --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 0 0% 98%;
-        --border: 240 3.7% 15.9%;
-        --input: 240 3.7% 15.9%;
-        --ring: 240 4.9% 83.9%;
-        --chart-1: 220 70% 50%;
-        --chart-2: 160 60% 45%;
-        --chart-3: 30 80% 55%;
-        --chart-4: 280 65% 60%;
-        --chart-5: 340 75% 55%;
-    }
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
 }
 
 @layer base {
-    * {
-        @apply border-border outline-ring/50;
-    }
-    body {
-        @apply bg-background text-foreground;
-        font-feature-settings: "ss01", "ss03", "cv01", "cv02";
-    }
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "ss03", "cv01", "cv02";
+  }
 }
 
 /* Loading Animation */
 .dot {
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    animation: dot-flash 1.5s infinite;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  animation: dot-flash 1.5s infinite;
 }
 
 .dot:nth-child(2) {
-    animation-delay: 0.2s;
+  animation-delay: 0.2s;
 }
 
 .dot:nth-child(3) {
-    animation-delay: 0.4s;
+  animation-delay: 0.4s;
 }
 
 @keyframes dot-flash {
-    0%,
-    100% {
-        opacity: 0.3;
-        transform: scale(1);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1.5);
-    }
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
 }

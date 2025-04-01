@@ -110,8 +110,8 @@ return null;
 
 - **Description:** Generates a README for a given GitHub repository.
 - **Parameters:**
-    - `repo` (string, required): The name of the GitHub repository (e.g., "username/repo-name").
-    - `model` (string, optional): The AI model to use for generation (e.g., "gemini", "chatgpt", "deepseek"). If not provided, the default model will be used.
+  - `repo` (string, required): The name of the GitHub repository (e.g., "username/repo-name").
+  - `model` (string, optional): The AI model to use for generation (e.g., "gemini", "chatgpt", "deepseek"). If not provided, the default model will be used.
 - **Request Body:** (optional)
   json
   {
@@ -128,7 +128,7 @@ return null;
   "owner": "user1"
   }
   ]
-    - **"Failed to connect to GitHub":** Ensure your GitHub credentials (Client ID and Secret) are correctly configured in the `.env.local` file. Also, verify that the callback URL in your GitHub OAuth app settings matches the URL of your Gitdocs.ai instance.
+  - **"Failed to connect to GitHub":** Ensure your GitHub credentials (Client ID and Secret) are correctly configured in the `.env.local` file. Also, verify that the callback URL in your GitHub OAuth app settings matches the URL of your Gitdocs.ai instance.
 - **"AI model API key invalid":** Double-check that your API keys for the AI models (Gemini, ChatGPT, DeepSeek) are valid and correctly entered in the `.env.local` file.
 - **"Rate limit exceeded":** Wait for the rate limit to reset before making further requests. Consider upgrading your subscription for higher rate limits.
 - **"MongoDB connection error":** Verify that your MongoDB connection string is correct and that your MongoDB instance is running and accessible.

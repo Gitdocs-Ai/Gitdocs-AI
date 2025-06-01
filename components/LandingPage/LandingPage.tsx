@@ -42,6 +42,25 @@ const Index = () => {
       <Navbar />
       <main>
         <Hero />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2132084475429455"
+          crossOrigin="anonymous"
+        ></script>
+        {/* Primary */}
+        <ins
+          className="adsbygoogle"
+          style={{ display: "block" }}
+          data-ad-client="ca-pub-2132084475429455"
+          data-ad-slot="9936336787"
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        ></ins>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(adsbygoogle = window.adsbygoogle || []).push({});`,
+          }}
+        ></script>
         <Features />
         <ScaleSection />
         <HowItWorks />

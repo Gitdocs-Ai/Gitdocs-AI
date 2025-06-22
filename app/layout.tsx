@@ -5,8 +5,6 @@ import { Theme } from "@radix-ui/themes";
 import { AppProvider } from "@/contexts/AppContext";
 import { FileTreeProvider } from "@/contexts/FileTreeContext";
 import SessionWrapper from "@/lib/SessionWrapper";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { Toaster } from "@/components/ui/sonner";
 import { ScrollPositionProvider } from "@/contexts/ScrollContextProvider";
@@ -203,8 +201,6 @@ export default function RootLayout({
               <AppProvider>
                 <FileTreeProvider>
                   <ScrollPositionProvider>{children}</ScrollPositionProvider>
-                  <Analytics />
-                  <SpeedInsights />
                   <Toaster />
                 </FileTreeProvider>
               </AppProvider>

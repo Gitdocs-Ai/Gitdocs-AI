@@ -1,19 +1,18 @@
 "use client";
 
-import { useUser } from "@clerk/nextjs";
 import { AppContext, AppContextType } from "@/contexts/AppContext";
-import { useContext, useEffect, useState } from "react";
-import { LuPlus, LuLayoutGrid, LuList, LuFolderOpen } from "react-icons/lu";
-import RepoCards from "../common/RepoCards";
-import LoadingAnimation from "../common/LoadingAnimation";
+import { useUser } from "@clerk/nextjs";
 import axios from "axios";
-import RepoList from "../common/RepoList";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useContext, useEffect, useState } from "react";
+import { LuFolderOpen, LuLayoutGrid, LuList, LuPlus } from "react-icons/lu";
 import { PiInfo, PiWarning } from "react-icons/pi";
-import { useRouter } from "next/navigation";
-import { useSearchParams } from "next/navigation";
-import GettingStarted from "../common/GettingStarted";
-import LoadingSkeleton from "./LoadingSkeleton";
 import { TfiWrite } from "react-icons/tfi";
+import GettingStarted from "../common/GettingStarted";
+import LoadingAnimation from "../common/LoadingAnimation";
+import RepoCards from "../common/RepoCards";
+import RepoList from "../common/RepoList";
+import LoadingSkeleton from "./LoadingSkeleton";
 
 interface Repository {
   name: string;

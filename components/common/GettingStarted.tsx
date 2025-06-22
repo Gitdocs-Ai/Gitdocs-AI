@@ -1,16 +1,15 @@
 "use client";
 
-import { useContext, SetStateAction, Dispatch } from "react";
+import { AppContext, AppContextType } from "@/contexts/AppContext";
+import { SignInButton, SignedIn, SignedOut, useUser } from "@clerk/nextjs";
+import axios from "axios";
 import {
   CreditCard,
   MessageSquareText,
   Package,
   ScanSearch,
 } from "lucide-react";
-import { AppContext, AppContextType } from "@/contexts/AppContext";
-import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs";
-import axios from "axios";
-import { useUser } from "@clerk/nextjs";
+import { useContext } from "react";
 import LoadingAnimation from "./LoadingAnimation";
 
 const GettingStarted = () => {
@@ -194,7 +193,7 @@ const GettingStarted = () => {
 
           {(storedUser?.stepsCompleted || 0) === 1 && (
             <a
-              href={`https://github.com/apps/gitdocs-ai/installations/new`}
+              href="https://github.com/apps/gitdocs-ai/installations/new"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => handleAddRepository()}

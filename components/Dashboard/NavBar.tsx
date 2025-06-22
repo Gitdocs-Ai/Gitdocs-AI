@@ -1,20 +1,20 @@
 "use client";
 
-import { LuArrowLeft, LuBell, LuCreditCard, LuPlus } from "react-icons/lu";
-import { AppContext, AppContextType } from "@/contexts/AppContext";
-import { useContext, useEffect, useState } from "react";
 import {
   Tooltip,
-  TooltipTrigger,
-  TooltipProvider,
   TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
 } from "@/components/ui/tooltip";
-import Link from "next/link";
-import LoadingAnimation from "../common/LoadingAnimation";
-import { useUser } from "@clerk/nextjs";
-import { usePathname } from "next/navigation";
-import LoadingBar from "react-top-loading-bar";
+import { AppContext, AppContextType } from "@/contexts/AppContext";
 import { tokenParser } from "@/lib/tokenParser";
+import { useUser } from "@clerk/nextjs";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useContext, useEffect, useState } from "react";
+import { LuArrowLeft, LuBell, LuCreditCard, LuPlus } from "react-icons/lu";
+import LoadingBar from "react-top-loading-bar";
+import LoadingAnimation from "../common/LoadingAnimation";
 
 const NavBar = () => {
   const { user } = useUser();

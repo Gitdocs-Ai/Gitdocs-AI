@@ -33,10 +33,10 @@ export async function POST(req: NextRequest) {
     // Handle specific GitHub events
     if (event === "push") {
       const fileChanged =
-        body.head_commit.added ||
-        body.head_commit.modified ||
-        body.head_commit.removed;
-      if (fileChanged == "README.md") {
+        body.head_commit.added.includes("README.md") ||
+        body.head_commit.modified.includes("README.md") ||
+        body.head_commit.removed.includes("README.md");
+      if (fileChanged) {
         const repositoryId = body.repository.id;
         const updatedAt = body.head_commit.timestamp;
         const recentCommitDescription = body.head_commit.message;

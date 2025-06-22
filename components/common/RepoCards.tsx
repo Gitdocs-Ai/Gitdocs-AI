@@ -90,13 +90,10 @@ const RepoCards = ({
         <FaGithub size={16} />
         <p className="truncate text-xs font-semibold hover:underline">
           {repo.gitLink.split("github.com/")[1]}
-        </p>{" "}
-        {/* Extract username/repository */}
+        </p>
       </Link>
 
-      <p className="text-xs text-gray-500">{repo.recentCommitDescription}</p>
-
-      <p className="text-xs text-gray-500 mt-2">
+      <p className="text-xs text-gray-500">
         Last Updated:{" "}
         {updatedAgo(new Date(repo.lastUpdated)) < 7
           ? updatedAgo(new Date(repo.lastUpdated)) + " days ago"
